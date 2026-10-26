@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Village Brief</title>
+  <style>
+    :root {
+      --bg: #f5f7fa;
+      --surface: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --primary: #1e3a5f;
+      --accent: #4aa3a2;
+      --border: #dbe3ea;
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      --radius: 14px;
+      --max-width: 1000px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      width: min(92%, var(--max-width));
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+    }
+
+    .site-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    nav a {
+      margin-left: 18px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .hero {
+      padding: 56px 0 36px;
+    }
+
+    .hero-card {
+      background: linear-gradient(135deg, #ffffff 0%, #eef4f8 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px 32px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero h1 {
+      margin: 0 0 12px;
+      font-size: 2.2rem;
+      color: var(--primary);
+    }
+
+    .hero p {
+      margin: 0 0 22px;
+      max-width: 700px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 18px;
+      border-radius: 10px;
+      font-weight: 600;
+      border: 1px solid var(--primary);
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #16304f;
+      text-decoration: none;
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--primary);
+    }
+
+    .btn-secondary:hover {
+      background: #f3f7fb;
+      text-decoration: none;
+    }
+
+    section {
+      padding: 18px 0 40px;
+    }
+
+    h2 {
+      color: var(--primary);
+      margin-bottom: 18px;
+    }
+
+    .featured-card,
+    .report-card,
+    .about-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .featured-card {
+      padding: 24px;
+    }
+
+    .featured-label {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: #e8f7f6;
+      color: #1d6f6e;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .featured-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.5rem;
+    }
+
+    .featured-card p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .reports-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    .report-card {
+      padding: 20px;
+    }
+
+    .report-card h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-size: 1.15rem;
+    }
+
+    .report-card p {
+      margin-top: 0;
+      color: var(--muted);
+      min-height: 72px;
+    }
+
+    .card-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .about-card {
+      padding: 24px;
+    }
+
+    .about-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+      margin-top: 24px;
+    }
+
+    .footer-inner {
+      padding: 20px 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+          .inactive-link {
+  color: #999;
+  background: #f2f2f2;
+  padding: 6px 10px;
+  border-radius: 4px;
+  display: inline-block;
+     }
+
+    @media (max-width: 640px) {
+      .header-inner {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+      }
+
+      nav a {
+        margin-left: 0;
+        margin-right: 14px;
+      }
+
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .hero-card {
+        padding: 28px 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-inner">
+      <div class="site-title">Village Brief</div>
+      <nav>
+        <a href="#latest">Latest Report</a>
+        <a href="#archive">Archive</a>
+
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-card">
+          <h1>Village Brief</h1>
+          <p>
+            Monthly AI-generated summaries of Tellico Village POA Board Meetings and POA Town Halls,
+based on publicly available recordings
+          </p>
+          <div class="button-row">
+            <a class="btn btn-primary" href="observer_report_2026-oct-19&21.pdf">View Latest Report</a>
+            <a class="btn btn-secondary" href="#archive">Browse Archive</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="latest">
+      <div class="container">
+        <h2>Latest Report</h2>
+        <div class="featured-card">
+          <div class="featured-label">Latest</div>
+         <h3>October 2026 Observer Report</h3>
+          <p>
+            Summary of key meeting topics, resident concerns, notable discussion
+            themes, and major takeaways from the October POA Board and 
+			Town Hall Meetings.
+          </p>
+          <div class="button-row">
+            <a class="btn btn-primary" href="observer_report_2026-oct-19&21.pdf" target="_blank">
+              PDF Report
+            </a>
+            <a class="btn btn-secondary" href="https://www.youtube.com/@tellicovillagenetwork6202/streams" target="_blank">
+              Watch on YouTube
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="archive">
+      <div class="container">
+        <h2>Monthly Archive</h2>
+ <div class="reports-grid">
+ 
+<!-- November 2026 CARD TEMPORARILY HIDDEN
+       <article class="report-card">
+    <h3>November 2026</h3>
+    <p>
+Scheduled for Sep. 14 (Town hall) and November 15 (POA Board Meeting)
+    </p>
+    <div class="card-links">
+	        <span class="inactive-link">▶ 📄 PDF Report: Upcoming </span>
+      <span class="inactive-link">▶ Board Meeting: Upcoming </span>
+	       <span class="inactive-link">▶ Town Hall: Upcoming </span>
+    </div>
+  </article>
+-->
+
+      <!-- October 2026 -->
+      <article class="report-card">
+        <h3>October 2026</h3>
+        <p>
+          September Town Hall, POA Board Meeting, and Board Appointee Forum.
+        </p>
+        <div class="card-links">
+          <a href="observer_report_2026-oct-19&21.pdf" target="_blank">
+            📄 PDF Report
+          </a>
+          <a href="https://www.youtube.com/watch?v=VjzdVX16F1c" target="_blank">
+            ▶ Board Appointee Forum: October 26
+          </a>
+          <a href="https://www.youtube.com/watch?v=Bp1p9KannR0" target="_blank">
+            ▶ Board Meeting: October 21
+          </a>
+          <a href="https://www.youtube.com/watch?v=SnAdYu2Qlus" target="_blank">
+            ▶ Town Hall: October 19
+          </a>
+        </div>
+      </article>
+
+      <!-- September 2026 -->
+      <article class="report-card">
+        <h3>September 2026</h3>
+        <p>
+          September Town Hall, POA Board Meeting, and P38 info meeting.
+        </p>
+        <div class="card-links">
+          <a href="observer_report_2026-sept-14&16-1.pdf" target="_blank">
+             📄 PDF Report
+            <a href="P38-Town-Hall-Summary-1.pdf">📄 P-38 summary</a>
+          </a>
+         <a href="https://www.youtube.com/watch?v=uydv-tdrU50" target="_blank">
+            ▶ P38 Info Meeting: September 21   
+            
+          <a href="https://www.youtube.com/watch?v=CPrWmb0oTC8" target="_blank">
+            ▶ Board Meeting: September 16
+          </a>
+          <a href="https://www.youtube.com/watch?v=qLTULrI8AQs" target="_blank">
+            ▶ Town Hall: September 14
+          </a>
+
+          </a>
+        </div>
+      </article>
+      
+      
+ 
+      <!-- AUGUST 2026 -->
+      <article class="report-card">
+        <h3>August 2026</h3>
+        <p>
+          August Town Hall, POA Board Meeting, and State of the Village presentation.
+        </p>
+        <div class="card-links">
+          <a href="TVobserver_report_2026-aug.pdf" target="_blank">
+            📄 PDF Report
+          </a>
+          <a href="https://www.youtube.com/watch?v=SAwCXhQDKZk" target="_blank">
+            ▶ Board Meeting: August 19
+          </a>
+          <a href="https://www.youtube.com/watch?v=wPr-d-xT-kI" target="_blank">
+            ▶ Town Hall: August 17
+          </a>
+          <a href="https://www.youtube.com/watch?v=0Z07pcz7kuA" target="_blank">
+            ▶ State of the Village: August 5
+          </a>
+        </div>
+      </article>
+
+
+      <!-- JULY 2026 -->
+      <article class="report-card">
+        <h3>July 2026</h3>
+        <p>
+          July Town Hall and POA Board Meeting.
+        </p>
+        <div class="card-links">
+          <a href="observer_report_2026-july-13&15.pdf" target="_blank">
+            📄 PDF Report
+          </a>
+          <a href="https://www.youtube.com/watch?v=ybniyfRjNyo" target="_blank">
+            ▶ Board Meeting: July 15
+          </a>
+          <a href="https://www.youtube.com/watch?v=AqgskjCyQGs" target="_blank">
+            ▶ Town Hall: July 13
+          </a>
+        </div>
+      </article>
+
+
+      <!-- JUNE 2026 -->
+      <article class="report-card">
+        <h3>June 2026</h3>
+        <p>
+          Administrative, financial, operational, and governance issues,
+          including food service and media access.
+        </p>
+        <div class="card-links">
+          <a href="TV_Observer_Report_June2026.pdf" target="_blank">
+            📄 PDF Report
+          </a>
+          <a href="https://www.youtube.com/watch?v=8hnmqvCJ6rE" target="_blank">
+            ▶ June 17th Board Meeting
+          </a>
+          <a href="https://www.youtube.com/live/wVIbbDpTxxw" target="_blank">
+            ▶ June 15th Town Hall
+          </a>
+        </div>
+      </article>
+  
+
+     <article class="report-card">
+    <h3>May 2026</h3>
+    <p>
+Infrastructure updates, utility system changes, resident feedback, and a new partnership with Troon   </p>
+    <div class="card-links">
+
+    <a href="TV_Observer_Report_May2026.pdf" target="_blank">
+      📄 PDF Report: Monthly Update
+    </a>
+
+    <a href="TV_Observer_Report_May7_2026.pdf" target="_blank">
+      📄 PDF Report: Special Town Hall
+    </a>
+
+
+
+
+    <a href="https://www.youtube.com/watch?v=1vNpSSDm2mc" target="_blank">
+      ▶ May 20th Board Meeting
+    </a>
+
+    <a href="https://www.youtube.com/watch?v=yeSY1wqMGBM" target="_blank">
+      ▶ May 18th Town Hall
+    </a>
+
+    <a href="https://www.youtube.com/live/3lVIdcZF-Yc" target="_blank">
+      ▶ Special Town Hall Meeting
+    </a>
+
+  </div>
+</article>
+  
+  
+     <article class="report-card">
+    <h3>April 2026</h3>
+    <p>
+      A wide range of administrative, community, and infrastructure topics.
+    </p>
+    <div class="card-links">
+      <a href="TV_Observer_Report_Apr2026.pdf" target="_blank">📄 PDF Report</a>
+      <a href="https://www.youtube.com/watch?v=_4iKAFQ_nKA" target="_blank">▶ Board Meeting</a>
+      <a href="https://www.youtube.com/watch?v=FagMwcr7C3A" target="_blank">▶ Town Hall</a>
+    </div>
+  </article>
+
+   
+  <article class="report-card">
+    <h3>March 2026</h3>
+    <p>
+      Administrative updates, financial reporting, and discussions on future operational strategies.
+    </p>
+    <div class="card-links">
+      <a href="TV_Observer_Report_March2026.pdf" target="_blank">📄 PDF Report</a>
+      <a href="https://www.youtube.com/watch?v=5QxSMRyKrXk" target="_blank">▶ Board Meeting</a>
+      <a href="https://www.youtube.com/watch?v=X7WL4M1PhpY" target="_blank">▶ Town Hall</a>
+    </div>
+  </article>
+
+  <article class="report-card">
+    <h3>February 2026</h3>
+    <p>
+      Organizational updates, strategic initiatives, and operational business
+    </p>
+    <div class="card-links">
+      <a href="TV_Observer_Report_Feb2026.pdf" target="_blank">📄 PDF Report</a>
+      <a href="https://www.youtube.com/watch?v=C-vLx-VOnC8" target="_blank">▶ Board Meeting</a>
+      <a href="https://www.youtube.com/live/vpBgiKOwpZw" target="_blank">▶ Town Hall</a>
+    </div>
+  </article>
+
+  <article class="report-card">
+    <h3>January 2026</h3>
+    <p>
+      Operational updates, community projects, and strategic planning for the year
+    </p>
+    <div class="card-links">
+      <a href="TV_Observer_Report_Jan2026.pdf" target="_blank">📄 PDF Report</a>
+      <a href="https://www.youtube.com/watch?v=-XrSZce9xBA" target="_blank">▶ Board Meeting</a>
+      <a href="https://www.youtube.com/watch?v=f4nEEQwJghY" target="_blank">▶ Town Hall</a>
+    </div>
+  </article>
+
+  <article class="report-card">
+    <h3>December 2025</h3>
+    <p>
+      Committee appointments, governance transparency, board member recognition,
+      updates on infrastructure projects, policy reviews
+    </p>
+    <div class="card-links">
+      <a href="TV_Observer_Report_December2025.pdf" target="_blank">📄 PDF Report</a>
+      <a href="https://www.youtube.com/watch?v=qs-FD_2v1ic" target="_blank">▶ Special Board Meeting</a>
+      <a href="https://www.youtube.com/live/hCdp3CYJtc0" target="_blank">▶ Board Meeting</a>
+    </div>
+  </article>
+</div>
+
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      © 2026 Village Brief
+    </div>
+  </footer>
+</body>
+</html>
+
